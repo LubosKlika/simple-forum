@@ -41,8 +41,8 @@
             <h4 class="text-center">Pro přidání otázek se <a href="/login">Přihlašte</a> nebo <a href="/create-user">Registrujte</a></h4>
             @endguest
             @auth
-            @endauth
             <h4 class="text-center"><a href="/create-question">Vytvořit otázku</a></h4>
+            @endauth
             @endforelse
             @if ($questions->hasPages())
                 {{$questions->links()}}
