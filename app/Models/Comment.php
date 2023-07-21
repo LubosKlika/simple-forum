@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Vote;
+use App\Models\Question;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Comment extends Model
 {
-    protected $fillable = ['users_id','question_id','content'];
+    protected $fillable = ['user_id','question_id','content'];
     
     use HasFactory;
 
@@ -21,9 +24,16 @@ class Comment extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'users_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
 
+
+    
+    public function votes()
+    {
+        return $this->morphMany(Vote::class, 'voting');
+    }
+    
 
 }

@@ -138,3 +138,18 @@ body{
     min-height: 1px;
     padding: 1rem;
 }
+
+.upVote {
+
+    background-color:green;
+}
+.downVote {
+
+    background-color:red;
+}
+
+.btn a{
+
+    text-decoration: none;
+    color: white;
+}

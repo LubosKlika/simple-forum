@@ -24,7 +24,7 @@ class CreateQuestion extends Component
 
       
         $questions = Question::create([
-            'users_id' => auth()->id(),
+            'user_id' => auth()->id(),
             'title' => $this->title,
             'content' => $this->content
             

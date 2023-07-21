@@ -16,22 +16,23 @@
                             <div class="row align-items-center">
                                 <div class="col-md-8 mb-3 mb-sm-0">
                                 <h5>
-                                    <a  class="text-primary"><a href="/question/{{$question->id}} " data-toggle="collapse" data-target=".forum-content" class="text-body">
+                                    <a  class="text-primary"><a href="/question/{{$question->id}}" data-toggle="collapse" data-target=".forum-content" class="text-body">
                                         {{ $question->title }}</a></a>
                                 </h5>
                                 <p class="text-sm"><span class="op-6">Vytvořeno</span> <a class="text-black" >{{ date('d.m.Y H:i', strtotime($question->created_at)) }}</a> <span class="op-6">uživatelem</span> 
                                     @if(optional($question->user)->id)
-                                    <a class="text-black" href="/users/{{ $question->user->id }}">{{$question->user->name}}</a></p>
+                                        <a class="text-black" href="/users/{{ $question->user->id }}">{{$question->user->name}}</a></p>
 
                                     @else
-                                   Smazaný uživatel</p>
+                                        Smazaný uživatel</p>
                                     @endif
                                 <div class="text-sm op-5">  {{ Str::limit($question->content, 100)}} </div>
                                 </div>
 
-
-                               
+                                <div class="text-end">@livewire('votes-controller', ['voting' => $question], key($question->id))</div>{{-- Klíč kvůli foreach a vyvolání $refresh --}}
+                                <div class="text-end">Počet komentářů: {{ $question->total_comments}} </div>
                             </div>
+                       
                         </div>
           
 
@@ -40,10 +41,13 @@
             @guest
             <h4 class="text-center">Pro přidání otázek se <a href="/login">Přihlašte</a> nebo <a href="/create-user">Registrujte</a></h4>
             @endguest
+
             @auth
             <h4 class="text-center"><a href="/create-question">Vytvořit otázku</a></h4>
             @endauth
+
             @endforelse
+            
             @if ($questions->hasPages())
                 {{$questions->links()}}
             @endif

@@ -21,7 +21,7 @@ class MainController extends Controller
         $request->session()->regenerateToken();
 
 
-        return redirect('/')->with('message', 'odhlášen');
+        return redirect('/');
     }
 
     public function showMain (){

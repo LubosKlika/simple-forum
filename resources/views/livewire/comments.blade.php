@@ -24,9 +24,10 @@
                         <div class="card-body">
                  
                                 <h3 class="text-center">
-                                    @if(optional($comment->user)->id)
+                                    
+                                    @if(optional($comment->user)->id) 
                                     <a href="/users/{{ $comment->user->id}}"><b><u> {{ $comment->user->name}} </u></b></a> 
-                                    @else 
+                                    @else {{-- Pokud byl uživatel smazán user_id == NULL --}}
                                     Smazaný uživatel
                                     @endif
                                 
@@ -42,6 +43,9 @@
                                 
                                 
                             </div>
+                        </div>
+                                      
+                        <div class="text-end me-4"> @livewire('votes-controller', ['voting' => $comment], key($comment->id)){{-- Klíč kvůli foreach a vyvolání $refresh --}}
                         </div>
                         @empty
                         <h4> Žádné komentáře</h4>

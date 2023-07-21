@@ -14,20 +14,22 @@
       <p class="card-text">{{ $question->title}}</p>
       <h5 class="card-title">Otázka:</h5>
       <p class="card-text">{{ $question->content}}</p>
+
     </div>
-    <div class="card-body">
+    <div class="card-body d-flex flex-column">
         @if(optional($question->user)->id)
           <a class="card-link " href="/users/{{ $question->user->id}}"><b><u> {{ $question->user->name}} </u></b></a>
         @else 
         <b><u> Smazaný uživatel</u></b>
         @endif
         <p class="card-text"> {{ $question->created_at}}</p>
+        <div class="text-end"> @livewire('votes-controller', ['voting' => $question])</div>
       </div>
-
   </div>
 
 
 </div>
 @livewire('comments',['question_id' => $question->id])
+
 
 @endsection

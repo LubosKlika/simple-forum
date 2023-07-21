@@ -32,10 +32,10 @@ class CreateUser extends Component
             
           
           ]);
-
+          //Nepřihlašovat pod účtem, pokud účet vytváří přihlášený uživatel
           if (!auth()->check()) {
             auth()->login($user);
-        }
+            }
 
           return redirect()->route('user', ['user' => $user->id]);
 
@@ -50,6 +50,6 @@ class CreateUser extends Component
 
     public function render()
     {
-        return view('livewire.create-user')->extends('layout');;
+        return view('livewire.create-user')->extends('layout');
     }
 }
